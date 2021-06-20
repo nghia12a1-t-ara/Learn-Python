@@ -6,7 +6,10 @@ matplotlib.use("tkAgg")
 import matplotlib.pyplot as plt
 import numpy as np
 
+<<<<<<< HEAD
 a = 2
+=======
+>>>>>>> e68820535448fe45b8d7707010af4be76f909eac
 #-------------------- FILE HANDLING -------------------#
 myDir = input('Direction to the SVC file: ')
 myFile = input('Name of SVC file: ')
