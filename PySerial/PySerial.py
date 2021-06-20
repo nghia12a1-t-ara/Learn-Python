@@ -78,7 +78,11 @@ ser1 = serial.Serial(connectPort, baudrate = mybaud, timeout = 1)
 print('Connected to ' + connectPort)
 print('DONE - Start Read:')
 
+<<<<<<< HEAD
 sleep(1.2)
+=======
+sleep(1.3)
+>>>>>>> py2
 
 #------------------- Text File PARAMETERS --------------------#
 numPoints = 10
