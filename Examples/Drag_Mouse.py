@@ -1,5 +1,4 @@
 import pyautogui
-
 pyautogui.click()
 distance = 200
 while distance > 0:
