@@ -2,7 +2,7 @@
 
 passwords = { 'mailhust' : 'nghia12a1', \
               'facebook' : 'Taarabt1012a', \
-              'fpt' : 'Taarabt1012ab', \
+              'fpt' : 'Taarabt1012abc', \
               'tpbank' : 'Nghia12a1', \
               'blog' : 'ABCXYA', \
               'tpbank' : '04193958001\nTPBank\nNGUYEN VAN NGHIA', \
