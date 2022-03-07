@@ -1,1 +1,1 @@
-pyuic5 -o GPIO.py GPIO_Test.ui
+pyuic5 -o GPIO.py UI_Files/GPIO_Test.ui
