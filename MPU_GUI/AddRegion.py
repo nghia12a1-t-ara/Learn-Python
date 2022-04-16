@@ -14,9 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AddConfig(object):
     def setupUi(self, AddConfig):
         AddConfig.setObjectName("AddConfig")
-        AddConfig.resize(691, 449)
+        AddConfig.resize(691, 397)
         self.textBrowser_8 = QtWidgets.QTextBrowser(AddConfig)
-        self.textBrowser_8.setGeometry(QtCore.QRect(10, 320, 294, 41))
+        self.textBrowser_8.setGeometry(QtCore.QRect(10, 270, 294, 41))
         self.textBrowser_8.setObjectName("textBrowser_8")
         self.textBrowser_2 = QtWidgets.QTextBrowser(AddConfig)
         self.textBrowser_2.setGeometry(QtCore.QRect(9, 76, 294, 41))
@@ -28,7 +28,7 @@ class Ui_AddConfig(object):
         self.textBrowser_6.setGeometry(QtCore.QRect(10, 170, 294, 41))
         self.textBrowser_6.setObjectName("textBrowser_6")
         self.Combo_AccessRight = QtWidgets.QComboBox(AddConfig)
-        self.Combo_AccessRight.setGeometry(QtCore.QRect(310, 320, 371, 41))
+        self.Combo_AccessRight.setGeometry(QtCore.QRect(310, 270, 371, 41))
         font = QtGui.QFont()
         font.setFamily("MS Sans Serif")
         font.setPointSize(12)
@@ -41,9 +41,6 @@ class Ui_AddConfig(object):
         self.Combo_AccessRight.addItem("")
         self.Combo_AccessRight.addItem("")
         self.Combo_AccessRight.addItem("")
-        self.textBrowser_7 = QtWidgets.QTextBrowser(AddConfig)
-        self.textBrowser_7.setGeometry(QtCore.QRect(10, 220, 294, 41))
-        self.textBrowser_7.setObjectName("textBrowser_7")
         self.RegionNumber = QtWidgets.QTextEdit(AddConfig)
         self.RegionNumber.setGeometry(QtCore.QRect(309, 76, 373, 41))
         font = QtGui.QFont()
@@ -56,7 +53,7 @@ class Ui_AddConfig(object):
         self.textBrowser_5.setGeometry(QtCore.QRect(9, 9, 673, 61))
         self.textBrowser_5.setObjectName("textBrowser_5")
         self.Combo_MemTypes = QtWidgets.QComboBox(AddConfig)
-        self.Combo_MemTypes.setGeometry(QtCore.QRect(310, 270, 373, 41))
+        self.Combo_MemTypes.setGeometry(QtCore.QRect(310, 220, 373, 41))
         font = QtGui.QFont()
         font.setFamily("MS Sans Serif")
         font.setPointSize(12)
@@ -71,10 +68,10 @@ class Ui_AddConfig(object):
         self.Combo_MemTypes.addItem("")
         self.Combo_MemTypes.addItem("")
         self.textBrowser_10 = QtWidgets.QTextBrowser(AddConfig)
-        self.textBrowser_10.setGeometry(QtCore.QRect(10, 270, 294, 41))
+        self.textBrowser_10.setGeometry(QtCore.QRect(10, 220, 294, 41))
         self.textBrowser_10.setObjectName("textBrowser_10")
         self.Cancel = QtWidgets.QPushButton(AddConfig)
-        self.Cancel.setGeometry(QtCore.QRect(310, 370, 371, 71))
+        self.Cancel.setGeometry(QtCore.QRect(310, 320, 371, 71))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -97,16 +94,8 @@ class Ui_AddConfig(object):
         font.setWeight(50)
         self.EndAddr.setFont(font)
         self.EndAddr.setObjectName("EndAddr")
-        self.RegionSize = QtWidgets.QTextEdit(AddConfig)
-        self.RegionSize.setGeometry(QtCore.QRect(310, 220, 373, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(False)
-        font.setWeight(50)
-        self.RegionSize.setFont(font)
-        self.RegionSize.setObjectName("RegionSize")
         self.Accept = QtWidgets.QPushButton(AddConfig)
-        self.Accept.setGeometry(QtCore.QRect(10, 370, 291, 71))
+        self.Accept.setGeometry(QtCore.QRect(10, 320, 291, 71))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -145,11 +134,6 @@ class Ui_AddConfig(object):
         self.Combo_AccessRight.setItemText(0, _translate("AddConfig", "MPU_PRIV_UNPRIV_NONE"))
         self.Combo_AccessRight.setItemText(1, _translate("AddConfig", "MPU_PRIV_RWX_UNPRIV_RWX"))
         self.Combo_AccessRight.setItemText(2, _translate("AddConfig", "MPU_PRIV_R_UNPRIV_R"))
-        self.textBrowser_7.setHtml(_translate("AddConfig", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600;\">Region Size</span></p></body></html>"))
         self.RegionNumber.setHtml(_translate("AddConfig", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -176,11 +160,6 @@ class Ui_AddConfig(object):
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\"><br /></p></body></html>"))
         self.EndAddr.setHtml(_translate("AddConfig", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600;\"><br /></p></body></html>"))
-        self.RegionSize.setHtml(_translate("AddConfig", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"

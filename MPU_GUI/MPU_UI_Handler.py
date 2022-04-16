@@ -23,7 +23,7 @@ tempConfig = {
 ConfigListName = list(tempConfig.keys())
 booleanConfigList = ["", "", ""]
 tempList = []
-
+SizeList = []
 
 #################################################################
 ################ Get PARAMETERS of Configuration ################
@@ -51,8 +51,9 @@ class ConfigWindow(QMainWindow, Ui_AddConfig):
         if ( RegionNumText == '' ) or ( StartAddrText == '' ) or ( EndAddrText == '' ):
             ErrorFlag = True
             ErrorText = ErrorText + "You must fill all Parameters"
-           
-        #------------------------ Check Valid Parameters ------------------------#
+
+        ##########################################################################   
+        #------------------------ Check VALID Parameters ------------------------#
         if ( ErrorFlag == False ):
             # Convert Text to Decimal Number (Check Hexa Syntax)
             if '0x' in RegionNumText:
@@ -70,6 +71,14 @@ class ConfigWindow(QMainWindow, Ui_AddConfig):
             else:
                 EndAddr = int(EndAddrText)
 
+            # Calculate Size of Region
+            Size = EndAddr - StartAddr
+
+            # Verify End Address > Start Address -> Size > 0
+            if Size <= 0:
+                ErrorFlag = True
+                ErrorText = ErrorText + " Region End Address must be > Region Start Address\n"
+            
             # Verify Region Number is from 0 to 7
             if ( RegionNum < 0 ) or ( RegionNum > 7 ):
                 ErrorFlag = True
@@ -84,11 +93,16 @@ class ConfigWindow(QMainWindow, Ui_AddConfig):
             if ( EndAddr < 32 ) or ( EndAddr > 4294967295 ):
                 ErrorFlag = True
                 ErrorText = ErrorText + "End Address must be >= 32 and <= ‭4294967295‬\n"
-                print('x')
+            
+            # Verify Size is multiple of 4096
+            if ((Size % 4096) != 4095) and ((Size % 4096) != 0):
+                ErrorFlag = True
+                ErrorText = ErrorText + "Region Size must be multiple of 4096\n"
         
         #------------------------ Check Status ------------------------#
         if ErrorFlag == True:
             QMessageBox.about(self, "Error", ErrorText)
+            
         else:
             tempConfig["RegionNumber"] = str(RegionNum)
             tempConfig["StartAddress"] = str(StartAddr)
@@ -96,13 +110,32 @@ class ConfigWindow(QMainWindow, Ui_AddConfig):
             tempConfig["MemoryTypes"] = ConfigWindow.SetupMemTypes(self)
             tempConfig["AccessRights"] = ConfigWindow.SetupAccessRight(self)
 
+            # Calculate Region Size
+            tempSize = str(Size)
+            SizeList.append(tempSize)
+            
             ListTemp = list(tempConfig.values())
-        
+            
             ConfigList.append(ListTemp)
-            
+
             # Show Region Config to Main Window
-            # ShowRegionConfig()
-            
+            ### Add Item to list View
+            win.RegionList.addItem(ListTemp[0])
+            win.StartAddrList.addItem(ListTemp[1])
+            win.EndAddrList.addItem(ListTemp[2])
+            win.MemTypeList.addItem(ListTemp[3])
+            win.AccessList.addItem(ListTemp[4])
+            win.RegionSizeList.addItem(tempSize)
+
+            ### ShowRegionConfig()
+            win.RegionList.show()
+            win.StartAddrList.show()
+            win.EndAddrList.show()
+            win.MemTypeList.show()
+            win.AccessList.show()
+            win.RegionSizeList.show()
+
+            ### Close Config Window
             ConfigWin.close()
 
     def ConfigReject(self):
@@ -123,10 +156,12 @@ class Window(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+        self.tableRegion = QTableWidget(8, 6)
         self.connectSignalsSlots()
 	
     def connectSignalsSlots(self):
         self.addRegion.clicked.connect(self.AddRegion)
+        self.DeleteRegion.clicked.connect(self.DelRegion)
         self.pushButton.clicked.connect(self.GenarateCode)
         self.toolButton.clicked.connect(self.FindFiles)
         self.checkBox_1.stateChanged.connect(self.checkDefaultMem)
@@ -154,6 +189,24 @@ class Window(QMainWindow, Ui_MainWindow):
             EnMemFault = False
         return str(EnMemFault).upper()
 
+    def DelRegion(self):
+        # Clear Last Row of All List Config
+        countConfig = win.RegionList.count()
+        LastIndex = int(countConfig - 1)
+        
+        if countConfig > 0:
+            # Remove Last Item of ConfigList
+            ConfigList.pop()
+            SizeList.pop()
+            
+            # Remove Last Item in QListView
+            self.RegionList.takeItem(LastIndex)
+            self.StartAddrList.takeItem(LastIndex)
+            self.EndAddrList.takeItem(LastIndex)
+            self.MemTypeList.takeItem(LastIndex)
+            self.AccessList.takeItem(LastIndex)
+            self.RegionSizeList.takeItem(LastIndex)
+        
     #------------------------ Add Data Config -------------------------#
     def CollectData(self):
         booleanConfigList[0] = Window.checkDefaultMem(self)
@@ -166,6 +219,8 @@ class Window(QMainWindow, Ui_MainWindow):
     def AddRegion(self):
         # Open Configuration Window
         ConfigWin.show()
+        currentRegion = int(len(ConfigList))
+        ConfigWin.RegionNumber.setText(str(currentRegion))
 
     def FindFiles(self):
         ConfigPath = QFileDialog.getExistingDirectory()
@@ -174,6 +229,9 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def GenarateCode(self):
         Window.CollectData(self)
+        boolCheckConfig = ConfigList[(len(ConfigList) - 1)]
+        print(ConfigList)
+        print(boolCheckConfig)
         
         GenerateFile(tempList[0], ConfigList, ConfigListName)
         TIME_LIMIT = 100
@@ -188,13 +246,11 @@ class Window(QMainWindow, Ui_MainWindow):
 #################################################################
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    
     win = Window()
     ConfigWin = ConfigWindow()
-
     win.show()
-    
     sys.exit(app.exec())
 
 #################################################################
 #################################################################
+   

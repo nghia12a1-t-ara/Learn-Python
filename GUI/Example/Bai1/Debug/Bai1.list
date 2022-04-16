@@ -27,24 +27,24 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0001057c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000192a  00000000  00000000  000105ac  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 0000063f  00000000  00000000  00011ed6  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 000002a8  00000000  00000000  00012518  2**3
-                  CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000260  00000000  00000000  000127c0  2**3
-                  CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  0000bf4a  00000000  00000000  00012a20  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00001a39  00000000  00000000  0001e96a  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    0003b3f1  00000000  00000000  000203a3  2**0
-                  CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0005b794  2**0
+ 12 .debug_info   00001977  00000000  00000000  000105ac  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .debug_abbrev 00000679  00000000  00000000  00011f23  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_aranges 000002a8  00000000  00000000  000125a0  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_ranges 00000260  00000000  00000000  00012848  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_macro  0000c0bd  00000000  00000000  00012aa8  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_line   00001ac2  00000000  00000000  0001eb65  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_str    0003b63a  00000000  00000000  00020627  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .comment      000000ce  00000000  00000000  0005bc61  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000adc  00000000  00000000  0005b810  2**2
-                  CONTENTS, READONLY, DEBUGGING
+ 20 .debug_frame  00000adc  00000000  00000000  0005bd30  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
 
@@ -366,11 +366,11 @@ void delay_ms(uint32_t time)
 	}
 }
  8000356:	bf00      	nop
- 8000358:	3714      	adds	r7, #20
- 800035a:	46bd      	mov	sp, r7
- 800035c:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000360:	4770      	bx	lr
-	...
+ 8000358:	bf00      	nop
+ 800035a:	3714      	adds	r7, #20
+ 800035c:	46bd      	mov	sp, r7
+ 800035e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000362:	4770      	bx	lr
 
 08000364 <Reset_Handler>:
 
@@ -648,29 +648,29 @@ Infinite_Loop:
 
 08000514 <__libc_init_array>:
  8000514:	b570      	push	{r4, r5, r6, lr}
- 8000516:	4e0d      	ldr	r6, [pc, #52]	; (800054c <__libc_init_array+0x38>)
+ 8000516:	4d0d      	ldr	r5, [pc, #52]	; (800054c <__libc_init_array+0x38>)
  8000518:	4c0d      	ldr	r4, [pc, #52]	; (8000550 <__libc_init_array+0x3c>)
- 800051a:	1ba4      	subs	r4, r4, r6
+ 800051a:	1b64      	subs	r4, r4, r5
  800051c:	10a4      	asrs	r4, r4, #2
- 800051e:	2500      	movs	r5, #0
- 8000520:	42a5      	cmp	r5, r4
+ 800051e:	2600      	movs	r6, #0
+ 8000520:	42a6      	cmp	r6, r4
  8000522:	d109      	bne.n	8000538 <__libc_init_array+0x24>
- 8000524:	4e0b      	ldr	r6, [pc, #44]	; (8000554 <__libc_init_array+0x40>)
+ 8000524:	4d0b      	ldr	r5, [pc, #44]	; (8000554 <__libc_init_array+0x40>)
  8000526:	4c0c      	ldr	r4, [pc, #48]	; (8000558 <__libc_init_array+0x44>)
  8000528:	f000 f818 	bl	800055c <_init>
- 800052c:	1ba4      	subs	r4, r4, r6
+ 800052c:	1b64      	subs	r4, r4, r5
  800052e:	10a4      	asrs	r4, r4, #2
- 8000530:	2500      	movs	r5, #0
- 8000532:	42a5      	cmp	r5, r4
+ 8000530:	2600      	movs	r6, #0
+ 8000532:	42a6      	cmp	r6, r4
  8000534:	d105      	bne.n	8000542 <__libc_init_array+0x2e>
  8000536:	bd70      	pop	{r4, r5, r6, pc}
- 8000538:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 8000538:	f855 3b04 	ldr.w	r3, [r5], #4
  800053c:	4798      	blx	r3
- 800053e:	3501      	adds	r5, #1
+ 800053e:	3601      	adds	r6, #1
  8000540:	e7ee      	b.n	8000520 <__libc_init_array+0xc>
- 8000542:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 8000542:	f855 3b04 	ldr.w	r3, [r5], #4
  8000546:	4798      	blx	r3
- 8000548:	3501      	adds	r5, #1
+ 8000548:	3601      	adds	r6, #1
  800054a:	e7f2      	b.n	8000532 <__libc_init_array+0x1e>
  800054c:	08000574 	.word	0x08000574
  8000550:	08000574 	.word	0x08000574
